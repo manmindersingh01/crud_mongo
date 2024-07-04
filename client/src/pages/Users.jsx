@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
+import url from '../axiosConfig';
 const Users = () => {
   const [cards, setCards] = useState([]);
   const navigate = useNavigate();
@@ -11,7 +11,7 @@ const Users = () => {
   };
 
   const handleDelete = (id) => {
-    axios.delete(`http://localhost:5001/api/user/cards/${id}`)
+    url.delete(`/cards/${id}`)
       .then(() => {
         setCards(cards.filter(card => card._id !== id));
       })
@@ -21,7 +21,7 @@ const Users = () => {
   };
 
   useEffect(() => {
-    axios.get('http://localhost:5001/api/user/cards')
+    url.get('/cards')
       .then(response => {
         setCards(response.data);
       })

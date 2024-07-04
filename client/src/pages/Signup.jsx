@@ -5,7 +5,7 @@ import grD from '../assets/bg-main-desktop.png'
 import grM from '../assets/bg-main-mobile.png'
 import cdF from '../assets/bg-card-front.png'
 import cdB from '../assets/bg-card-back.png'
-
+import url from '../axiosConfig';
 function Signup() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -26,7 +26,7 @@ function Signup() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:5001/api/user/submit', formData)
+    url.post('/submit', formData)
       .then(response => {
         navigate('/success')
         console.log('Data submitted successfully:', response.data);

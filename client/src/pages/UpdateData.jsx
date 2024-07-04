@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-
+import url from '../axiosConfig';
 const UpdateData = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -15,7 +15,7 @@ const UpdateData = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    axios.get(`http://localhost:5001/api/user/get/${id}`)
+    url.get(`/get/${id}`)
       .then(res => {
         setFormData(res.data);
         setIsLoading(false);
@@ -36,7 +36,7 @@ const UpdateData = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.put(`http://localhost:5001/api/user/update/${id}`, formData)
+    url.put(`/update/${id}`, formData)
       .then(res => {
         console.log('Data updated successfully!', res.data);
         navigate('/users');
